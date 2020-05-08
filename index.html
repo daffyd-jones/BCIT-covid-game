@@ -113,6 +113,9 @@
         .won .player {
             box-shadow: -4px -7px 8px white, 4px -7px 8px white;
         }
+        #homeDiv{
+            width:68vw;
+        }
 
 
         @media (min-width: 1025px) {
@@ -278,6 +281,9 @@
             }
             #livesText{
                 font-size: smaller      ;
+            }
+            #homeDiv{
+                width:90vw;
             }
             
             .flex-container2 {
@@ -1509,6 +1515,7 @@
 
             let player = newState.player;
             if (this.level.touches(player.pos, player.size, "lava")) {
+                loseAudio.play();
                 lives -= 1;
                 return new State(this.level, actors, "lost");
             } else if (this.level.touches(player.pos, player.size, "box")) {
@@ -1593,6 +1600,7 @@
             document.getElementById('homeDiv').style.display = "none";
             document.getElementById('loseDiv').style.display = "none";
             document.getElementById('buttonDiv').style.visibility = "visible";
+            document.getElementById('scoreDiv').style.visibility = "visible";
             for (let level = 0; level < plans.length;) {
                 let fact = Math.floor(Math.random()*FACT_ARRAY.length);
                 console.log("fact number: " + fact);
@@ -1623,7 +1631,8 @@
         function main(){
             document.getElementById('homeDiv').style.display = "block";
             document.getElementById('loseDiv').style.display = "none";
-            document.getElementById('buttonDiv').style.visibility = "hidden";
+            document.getElementById('scoreDiv').style.visibility = "hidden";
+            document.getElementById('buttonDiv').style.visibility = "hidden ";
 
         }
         main();
