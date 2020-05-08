@@ -37,8 +37,10 @@
             align-content: center;
         }
 
+     
+
         #buttonDiv {
-            background: lavender;
+            /*background-color: lavender;*/
             padding: 1%;
             position: auto;
         }
@@ -54,15 +56,12 @@
             background: dimgray;
             padding: 1%;
             position: auto;
-            justify-content: space-between;
-            display: flex;
-            flex-direction: row;
         }
 
         
 
         body {
-            background: rgb(119, 108, 126);
+            background: rgb(131, 116, 139);
             -webkit-user-select: none;
             -khtml-user-select: none;
             -moz-user-select: none;
@@ -114,6 +113,8 @@
         .won .player {
             box-shadow: -4px -7px 8px white, 4px -7px 8px white;
         }
+
+
         @media (min-width: 1025px) {
             .flex-container2 {
             text-align: center;
@@ -124,6 +125,25 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            }
+
+            .grid-container{
+                display: grid;
+                grid-template-rows: 10vh;
+                grid-template-columns: 6;
+            }
+
+            #item1{
+                grid-row: 1 /span 2;
+
+            }
+
+            #item2{
+                grid-row: 3/ span 5;
+            }
+
+            #item3{
+                grid-row:8 / span 3;
             }
 
             .game {
@@ -140,39 +160,87 @@
 
             #buttonDiv{
                 display:none;
-                align-content:auto;
             }
 
             #scoreDiv {
-                position: auto;
-                display:inline-block;
-                margin: 0 auto;
+                padding:5vh;
             }
         }
+
+        @media (max-width:900px) and (orientation: landscape) {
+            .game {
+                overflow: hidden;
+                max-width: 50vw;
+                max-height: 9vh;
+                position: relative;
+            }
+            .grid-container{
+                height: 97%;
+                display:grid;
+                grid-template-columns: 19vw 59vw 20vw;
+                grid-template-rows: none;
+            }
+            .flex-container2{
+                position:relative;
+                height: 97%;
+            }
+            #gameDiv{
+                height:100%;
+            }
+            #factText{
+                font-size: smaller;
+            }
+            grid-item:nth-child(1) {order: 3;}
+            grid-item:nth-child(2) {order: 2;}
+            grid-item:nth-child(3) {order: 1;}
+            #item3{
+                grid-column: 1 / span 1;
+            }
+            #item2{
+                grid-column: 2 / span 1;
+
+            }
+            #item1{
+                grid-column: 3 / span 1;
+
+
+            }
+            #buttonDiv{
+                padding:1px;
+            }
+            #tbItem{
+                position: absolute;
+                bottom: 10vh;
+                /*background-color: lavender;*/
+            }
+            #stuffDiv{
+                /*background-color: lavender;*/
+                position: relative;
+                height:97%;
+                margin:1%;
+            }
+          
+        }
+        
     
         @media (min-width: 668px) and (max-width: 1024px) {
             .game {
                 overflow: hidden;
-                max-width: 90vw;
+                max-width: 95vw;
                 max-height: 60vh;
                 position: relative;
             }
         }
-        @media (max-width:667px) {
+        @media (max-width:668px) {
             .game {
                 overflow: hidden;
                 max-width: 90vw;
-                max-height: 80vh;
+                max-height: 65vh;
                 position: relative;
-            }
-
-            #factText{
-                display:none;
             }
             
             .flex-container2 {
             background: dimgray;
-            border: 1px solid black;
             padding: 2%;
             position: auto;
             display: flex;
@@ -180,23 +248,40 @@
             justify-content: space-between;
             align-items: stretch;
             }
+            #buttonDiv{
+                display:grid;
+                grid-template-columns: 8;
+                text-align: center;
+            }
+            #tbItem{
+                grid-column: 3 / span 6;
+            }
         }
 
-        @media (max-width:400px) {
+        @media (max-width:500px) {
             .game {
                 overflow: hidden;
                 max-width: 90vw;
-                max-height: 73vh;
+                max-height: 65vh;
                 position: relative;
+            }
+            
+            #scoreDiv{
+                display:none;
             }
 
             #factText{
                 display:none;
             }
+            #levelText{
+                font-size: smaller;
+            }
+            #livesText{
+                font-size: smaller      ;
+            }
             
             .flex-container2 {
             background-color: dimgrey;
-            border: 1px solid black;
             padding: 2%;
             position: auto;
             display: flex;
@@ -211,15 +296,35 @@
 <body>
 
 
-    <div class="flex-container2">
-        <div id="gameDiv">
+<div class="grid-container">
+
+
+    <grid-item class="item1">
+        <div id="stuffDiv">
+        <p id="levelText"></p>
+        <p id="livesText"></p>
         </div>
-    </div>
+    </grid-item>
 
 
-    <div class="flex-container">
+    <grid-item id="item2">
+        <div class="flex-container2">
+            <div id="gameDiv">
+            </div>
+        </div>
+    </grid-item>
+    
+
+
+    <grid-item id="item3">
+        <div>
+            <div id="scoreDiv">
+                <h7 id="factText"></h7>
+            </div>
+        </div>
+        
         <div id="buttonDiv">
-            <table>
+            <table id="tbItem">
                 <tbody>
                     <tr>
                         <td>&nbsp;</td>
@@ -247,37 +352,8 @@
                 </tbody>
             </table>
         </div>
-
-        <div>
-            <div id="scoreDiv">
-                <h5 id="levelText"></h5>
-                <h5 id="livesText"></h5>
-                <h5 id="factText"></h5>
-            </div>
-        </div>
-
-        <div id="buttonDiv">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><div class="arrowButt" onmouseup="aButtF" onmousedown="aButtT">A</div></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </grid-item>
+</div>
 
 
     <script>
@@ -893,11 +969,11 @@
             "Other coronaviruses include Middle East Respratory Syndrome (MERS), and Severe Acute Respriratory " +
             "Syndrome (SARS)"
         ];
-        let bgAudio = new Audio("sounds/Hdhdhd.wav");
+        ///let bgAudio = new Audio("sounds/Hdhdhd.wav");
         let coinAudio = new Audio("sounds/Coin.wav");
         let loseAudio = new Audio("sounds/Lose.wav");
         let winAudio = new Audio("sounds/Win.wav");
-        bgAudio.load();
+        //bgAudio.load();
         coinAudio.load();
         coinAudio.volume = 0.5;
         loseAudio.load();
@@ -1300,7 +1376,7 @@
             return new State(state.level, state.actors, "lost");
         };
 
-        Box.prototype.collide = function (state) {
+        Box.prototype.collide = function (state) {  
             loseAudio.play();
             lives -= 1;
             return new State(state.level, state.actors, "lost");
