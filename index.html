@@ -309,7 +309,18 @@
 
     <grid-item id="item2">
         <div class="flex-container2">
+            
             <div id="gameDiv">
+                <div id="loseDiv">
+                    <h3>Sorry you ran out of lives</h3>
+                    <h5>Click the button below to start again</h5>
+                    <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
+                </div>
+                <div id="homeDiv">
+                    <h3>Welcome to Covid Game</h3>
+                    <h5>Avoid other people and mucus while collecting toilet paper</h5>
+                    <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
+                </div>
             </div>
         </div>
     </grid-item>
@@ -1579,6 +1590,9 @@
 
         async function runGame(plans, Display) {
             lives = 5;
+            document.getElementById('homeDiv').style.display = "none";
+            document.getElementById('loseDiv').style.display = "none";
+            document.getElementById('buttonDiv').style.visibility = "visible";
             for (let level = 0; level < plans.length;) {
                 let fact = Math.floor(Math.random()*FACT_ARRAY.length);
                 console.log("fact number: " + fact);
@@ -1600,10 +1614,19 @@
                 }
                 
             }
+            document.getElementById('loseDiv').style.display = "block";
 
         }
 
-        runGame(GAME_LEVELS, DOMDisplay);
+
+
+        function main(){
+            document.getElementById('homeDiv').style.display = "block";
+            document.getElementById('loseDiv').style.display = "none";
+            document.getElementById('buttonDiv').style.visibility = "hidden";
+
+        }
+        main();
     </script>
 
 
