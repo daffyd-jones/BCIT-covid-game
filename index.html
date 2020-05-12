@@ -111,7 +111,7 @@
         }
 
         .player {
-            background: url('images/player.png');
+            background: url('images/playerRight.png');
             background-size: 100%;
             /*background: dimgrey;*/
         }
@@ -126,7 +126,13 @@
         #homeDiv{
             width:68vw;
         }
+        #loseDiv{
+            width:68vw;
+        }
+        #otherFactDiv{
+            display: none;
 
+        }
 
         @media (min-width: 1025px) {
             .flex-container2 {
@@ -165,7 +171,9 @@
                 max-height: 600vh;
                 position: relative;
             }
-
+            #otherScoreDiv{
+                display:none;
+            }
             #gameDiv{
                 position: relative;
                 left:13vw;
@@ -179,12 +187,44 @@
                 padding:5vh;
             }
         }
+        @media (max-width: 768px) and (min-height: 1024px) {
+            .game {
+                overflow: hidden;
+                max-width: 95vw;
+                max-height: 60vh;
+                position: relative;
+            }
+            #tbItem{
+                position: absolute;
+                bottom: 5vh;
+                left: 10vw;
+            }
+            #otherScoreDiv{
+                display:none;
+            }
+        }
+        @media (min-width: 901px) and (max-width: 1024px) and (orientation: landscape){
+            .game {
+                overflow: hidden;
+                max-width: 95vw;
+                max-height: 60vh;
+                position: relative;
+            }
+            #tbItem{
+                position: absolute;
+                bottom: 3vh;
+                left: 5vw;
+            }
+            #otherScoreDiv{
+                display: none;
+            }
+        }
 
         @media (max-width:900px) and (orientation: landscape) {
             .game {
                 overflow: hidden;
-                max-width: 50vw;
-                max-height: 9vh;
+                max-width: 60vw;
+                max-height: 90vh;
                 position: relative;
             }
             .grid-container{
@@ -200,6 +240,13 @@
             #gameDiv{
                 height:100%;
             }
+            #scoreDiv{
+                display: none;
+            }
+            #otherScoreDiv{
+                background-color: lavender;
+            }
+
             #factText{
                 font-size: smaller;
             }
@@ -224,6 +271,7 @@
             #tbItem{
                 position: absolute;
                 bottom: 10vh;
+                left:6px;
                 /*background-color: lavender;*/
             }
             #stuffDiv{
@@ -236,15 +284,8 @@
         }
         
     
-        @media (min-width: 668px) and (max-width: 1024px) {
-            .game {
-                overflow: hidden;
-                max-width: 95vw;
-                max-height: 60vh;
-                position: relative;
-            }
-        }
-        @media (max-width:668px) {
+ 
+        @media (max-width:668px) and (orientation: portrait) {
             .game {
                 overflow: hidden;
                 max-width: 90vw;
@@ -265,6 +306,7 @@
                 display:grid;
                 grid-template-columns: 8;
                 text-align: center;
+                margin:1vh;
             }
             #tbItem{
                 grid-column: 3 / span 6;
@@ -275,31 +317,39 @@
             .game {
                 overflow: hidden;
                 max-width: 90vw;
-                max-height: 65vh;
+                max-height: 55vh;
                 position: relative;
+            }
+            #buttonDiv{
+                margin:1vw;
             }
             
             #scoreDiv{
-                display:none;
+                /*display:none;*/
+                height: 10vh;
             }
 
             #factText{
-                display:none;
+                /*display:none;*/
+                font-size: smaller;
             }
             #levelText{
                 font-size: smaller;
             }
             #livesText{
-                font-size: smaller      ;
+                font-size: smaller;
             }
             #homeDiv{
                 width:90vw;
+            }
+            #otherScoreDiv{
+                display: none;
             }
             
             .flex-container2 {
             background-color: dimgrey;
             padding: 2%;
-            position: auto;
+            position: relative;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -324,6 +374,11 @@
 
 
     <grid-item id="item2">
+        <div>
+            <div id="scoreDiv">
+                <h7 id="factText"></h7>
+            </div>
+        </div>
         <div class="flex-container2">
             
             <div id="gameDiv">
@@ -334,7 +389,7 @@
                 </div>
                 <div id="homeDiv">
                     <h3>Welcome to Covid Game</h3>
-                    <h5>Avoid other people and mucus while collecting toilet paper</h5>
+                    <h5>Avoid viruses and contaminated surfaces while collecting toilet paper</h5>
                     <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
                 </div>
             </div>
@@ -345,8 +400,8 @@
 
     <grid-item id="item3">
         <div>
-            <div id="scoreDiv">
-                <h7 id="factText"></h7>
+            <div id="otherScoreDiv">
+                <h7 id="otherFactText"></h7>
             </div>
         </div>
         
@@ -446,7 +501,7 @@
         let GAME_LEVELS = [
             
             
-        '........................................................................................\n' +
+            '........................................................................................\n' +
             '.######################################################################################.\n' +//1
             '.#.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.#................o..o..o..o..................#.\n' +
             '.#o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o.o#.o.o.o.o.o........................=.........#.\n' +
@@ -1783,10 +1838,12 @@
             document.getElementById('loseDiv').style.display = "none";
             document.getElementById('buttonDiv').style.visibility = "visible";
             document.getElementById('scoreDiv').style.visibility = "visible";
+            document.getElementById('otherScoreDiv').style.visibility = "visible";
             for (let level = 0; level < plans.length;) {
                 let fact = Math.floor(Math.random()*FACT_ARRAY.length);
                 console.log("fact number: " + fact);
                 document.getElementById("factText").innerHTML = FACT_ARRAY[fact];
+                document.getElementById("otherFactText").innerHTML = FACT_ARRAY[fact];
                 document.getElementById("levelText").innerHTML = "Level: " + (level + 1);
                 document.getElementById("livesText").innerHTML = "Lives: " + lives;
                 console.log("Level: " + (level + 1));
@@ -1815,6 +1872,7 @@
             document.getElementById('loseDiv').style.display = "none";
             document.getElementById('scoreDiv').style.visibility = "hidden";
             document.getElementById('buttonDiv').style.visibility = "hidden ";
+            document.getElementById('otherScoreDiv').style.visibility = "hidden ";
 
         }
         main();
