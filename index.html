@@ -75,8 +75,9 @@
             background: url("images/lava.png");
         }
 
-        .Upbox {
+        .upbox {
             background: url("images/1up.png");
+            background-size: 100%;
             /*background-color:azure;*/
         }
 
@@ -111,10 +112,21 @@
         }
 
         .player {
-            background: url('images/playerRight.png');
+            background-image: url('images/playerRight.png');
             background-size: 100%;
             /*background: dimgrey;*/
         }
+        .player#plyrLeft{
+            background-image: url('images/playerLeft.png');
+            background-size: 100%;
+            /*background: dimgrey;*/
+        }
+        .player#plyrRight{
+            background-image: url('images/playerRight.png');
+            background-size: 100%;
+            /*background: dimgrey;*/
+        }
+
 
         .lost .player {
             background: firebrick;
@@ -131,8 +143,26 @@
         }
         #otherFactDiv{
             display: none;
-
         }
+        #factText{
+            text-align: center;
+        }
+        #fullToggTop{
+            position: absolute;
+            right:3vw;
+            top:3vh;
+        }
+        #musicToggle{
+            position: absolute;
+            right:7vw;
+            top:3vh;
+        }
+        #fxToggle{
+            position: absolute;
+            right:10vw;
+            top:3vh;
+        }
+
 
         @media (min-width: 1025px) {
             .flex-container2 {
@@ -202,6 +232,21 @@
             #otherScoreDiv{
                 display:none;
             }
+            #fullToggTop{
+                position: absolute;
+                right:3vw;
+                top:3vh;
+            }
+            #musicToggle{
+                position: absolute;
+                right:13vw;
+                top:3vh;
+            }
+            #fxToggle{
+                position: absolute;
+                right:20vw;
+                top:3vh;
+            }
         }
         @media (min-width: 901px) and (max-width: 1024px) and (orientation: landscape){
             .game {
@@ -217,6 +262,21 @@
             }
             #otherScoreDiv{
                 display: none;
+            }
+            #fullToggTop{
+                position: absolute;
+                right:3vw;
+                top:3vh;
+            }
+            #musicToggle{
+                position: absolute;
+                right:10vw;
+                top:3vh;
+            }
+            #fxToggle{
+                position: absolute;
+                right:15vw;
+                top:3vh;
             }
         }
 
@@ -249,6 +309,7 @@
 
             #factText{
                 font-size: smaller;
+                text-align: center;
             }
             grid-item:nth-child(1) {order: 3;}
             grid-item:nth-child(2) {order: 2;}
@@ -280,7 +341,21 @@
                 height:97%;
                 margin:1%;
             }
-          
+            #fullToggTop{
+                position: absolute;
+                right:1vw;
+                top:15vh;
+            }
+            #musicToggle{
+                position: absolute;
+                right:1vw;
+                top:25vh;
+            }
+            #fxToggle{
+                position: absolute;
+                right:1vw;
+                top:35vh;
+            }
         }
         
     
@@ -327,11 +402,13 @@
             #scoreDiv{
                 /*display:none;*/
                 height: 10vh;
+                text-align: center;
             }
 
             #factText{
                 /*display:none;*/
                 font-size: smaller;
+                text-align: center;
             }
             #levelText{
                 font-size: smaller;
@@ -355,6 +432,22 @@
             justify-content: space-between;
             align-items: stretch;
             }
+            #fullToggTop{
+                position: absolute;
+                right:3vw;
+                top:3vh;
+            }
+            #musicToggle{
+                position: absolute;
+                right:23vw;
+                top:3vh;
+            }
+            #fxToggle{
+                position: absolute;
+                right:37vw;
+                top:3vh;
+            }
+
         }
     </style>
 </head>
@@ -369,6 +462,9 @@
         <div id="stuffDiv">
         <p id="levelText"></p>
         <p id="livesText"></p>
+        <button id="fullToggTop" onclick="toggleFullScreen();">Fullsceen</button>
+        <button id="musicToggle" onclick="musicTogg();">Music</button>
+        <button id="fxToggle"  onclick="fxTogg();">FX</button>
         </div>
     </grid-item>
 
@@ -386,11 +482,14 @@
                     <h3>Sorry you ran out of lives</h3>
                     <h5>Click the button below to start again</h5>
                     <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
+
                 </div>
                 <div id="homeDiv">
                     <h3>Welcome to Covid Game</h3>
                     <h5>Avoid viruses and contaminated surfaces while collecting toilet paper</h5>
+                    <h5>Full screen is recommended for mobile</h5>
                     <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
+
                 </div>
             </div>
         </div>
@@ -439,7 +538,51 @@
 
 
     <script>
+        let fxBool = true;
+        function fxTogg(){
+            if (fxBool){
+                coinAudio.volume = 0;
+                loseAudio.volume = 0;
+                winAudio.volume = 0;
+                oneUpAudio.volume = 0;
+                fxBool = false;
+            } else if (!fxBool){
+                coinAudio.volume = 0.2;
+                loseAudio.volume = 0.2;
+                winAudio.volume = 0.2;
+                oneUpAudio.volume = 0.2;  
+                fxBool = true; 
+            }
+        }
+
+        let musicBool = true;
+        function musicTogg(){
+            if(musicBool){
+                bgAudio.pause();
+                musicBool = false;
+            } else if (!musicBool){
+                bgAudio.play();
+                musicBool = true;
+            }
+        }
         
+
+        function toggleFullScreen() {
+            var doc = window.document;
+            var docEl = doc.documentElement;
+
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+            }
+            else {
+                cancelFullScreen.call(doc);
+            }
+        }   
+        
+
         //this is a level template
         let simpleLeveldddPlan = [
             '......................\n' +
@@ -1223,17 +1366,22 @@
             "Other coronaviruses include Middle East Respratory Syndrome (MERS), and Severe Acute Respriratory " +
             "Syndrome (SARS)"
         ];
-        ///let bgAudio = new Audio("sounds/Hdhdhd.wav");
+        let bgAudio = new Audio("sounds/Bg.wav");
         let coinAudio = new Audio("sounds/Coin.wav");
         let loseAudio = new Audio("sounds/Lose.wav");
         let winAudio = new Audio("sounds/Win.wav");
-        //bgAudio.load();
+        let oneUpAudio = new Audio("sounds/1Up.wav");
+        bgAudio.load();
+        bgAudio.volume = 0.5
+        bgAudio.loop = "true";
         coinAudio.load();
-        coinAudio.volume = 0.5;
+        coinAudio.volume = 0.2;
         loseAudio.load();
-        loseAudio.volume = 0.5;
+        loseAudio.volume = 0.2;
         winAudio.load();
-        winAudio.volume = 0.5;
+        winAudio.volume = 0.2;
+        oneUpAudio.load();
+        oneUpAudio.volume = 0.2;
 
         let levelNum = 0
         let lives = 0;
@@ -1296,6 +1444,8 @@
         function next() {
             wait = false;
         }
+
+        
 
 
 
@@ -1641,6 +1791,7 @@
                 lives += 1;
                 this.upCount();
             }
+            oneUpAudio.play();
             console.log("Upbox count: " + this.count)
             document.getElementById("livesText").innerHTML = "Lives: " + lives;
             return new State(state.level, state.actors, "playing");
@@ -1716,11 +1867,15 @@
             let xSpeed = 0;
             if (keys.ArrowLeft || leftButt) {
                 xSpeed -= playerXSpeed;
-                //allFalse();
+                document.getElementsByClassName('player')[0].setAttribute('id', 'plyrLeft');
+                let x = document.getElementById('plyrLeft');
+                console.log(x);
             }
             if (keys.ArrowRight || rightButt) {
                 xSpeed += playerXSpeed;
-                //allFalse();
+                document.getElementsByClassName('player')[0].setAttribute('id', 'plyrRight');   
+                let x = document.getElementById('plyrRight');
+                console.log(x);         
             }
             let pos = this.pos;
             let movedX = pos.plus(new Vec(xSpeed * time, 0));
@@ -1839,6 +1994,7 @@
             document.getElementById('buttonDiv').style.visibility = "visible";
             document.getElementById('scoreDiv').style.visibility = "visible";
             document.getElementById('otherScoreDiv').style.visibility = "visible";
+            bgAudio.play();
             for (let level = 0; level < plans.length;) {
                 let fact = Math.floor(Math.random()*FACT_ARRAY.length);
                 console.log("fact number: " + fact);
@@ -1864,7 +2020,7 @@
             document.getElementById('loseDiv').style.display = "block";
 
         }
-
+        
 
 
         function main(){
