@@ -341,20 +341,28 @@
                 height:97%;
                 margin:1%;
             }
+            #toggDiv{
+                position:relative;
+                top:40vh;
+                background: lavender;
+                padding: 1vw;
+                height:15vh;
+            }
+
             #fullToggTop{
-                position: absolute;
+                position: relative;
                 right:1vw;
-                top:15vh;
+                top:1vh;
             }
             #musicToggle{
-                position: absolute;
+                position: relative;
                 right:1vw;
-                top:25vh;
+                top:3vh;
             }
             #fxToggle{
-                position: absolute;
+                position: relative;
                 right:1vw;
-                top:35vh;
+                top:3vh;
             }
         }
         
@@ -462,9 +470,11 @@
         <div id="stuffDiv">
         <p id="levelText"></p>
         <p id="livesText"></p>
-        <button id="fullToggTop" onclick="toggleFullScreen();">Fullsceen</button>
-        <button id="musicToggle" onclick="musicTogg();">Music</button>
-        <button id="fxToggle"  onclick="fxTogg();">FX</button>
+        <div id="toggDiv">
+            <button id="fullToggTop" onclick="toggleFullScreen();">Fullsceen</button>
+            <button id="musicToggle" onclick="musicTogg();">Music</button>
+            <button id="fxToggle"  onclick="fxTogg();">FX</button>
+        </div>
         </div>
     </grid-item>
 
