@@ -116,12 +116,12 @@
             background-size: 100%;
             /*background: dimgrey;*/
         }
-        .player#plyrLeft{
+        .player #plyrLeft{
             background-image: url('images/playerLeft.png');
             background-size: 100%;
             /*background: dimgrey;*/
         }
-        .player#plyrRight{
+        .player #plyrRight{
             background-image: url('images/playerRight.png');
             background-size: 100%;
             /*background: dimgrey;*/
@@ -138,9 +138,7 @@
         #homeDiv{
             width:68vw;
         }
-        #loseDiv{
-            width:68vw;
-        }
+       
         #otherFactDiv{
             display: none;
         }
@@ -216,6 +214,9 @@
             #scoreDiv {
                 padding:5vh;
             }
+            #startButt{
+                left:40%;
+            }
         }
         @media (max-width: 768px) and (min-height: 1024px) {
             .game {
@@ -225,13 +226,30 @@
                 position: relative;
             }
             #tbItem{
+                width:30vw;
                 position: absolute;
                 bottom: 5vh;
                 left: 10vw;
             }
-            #otherScoreDiv{
+            #scoreDiv{
                 display:none;
             }
+            #otherScoreDiv{
+                position: absolute;
+                background-color: lavender;
+                left: 40vw;
+                top: 70vh;
+                height:20vh;
+                width:30hw;
+                margin: 5vw;
+                padding: 1%;
+                text-align: center;
+            }
+            #otherFactText{
+                position: relative;
+                top:20%;
+            }
+    
             #fullToggTop{
                 position: absolute;
                 right:3vw;
@@ -251,7 +269,7 @@
         @media (min-width: 901px) and (max-width: 1024px) and (orientation: landscape){
             .game {
                 overflow: hidden;
-                max-width: 95vw;
+                max-width: 96vw;
                 max-height: 60vh;
                 position: relative;
             }
@@ -328,6 +346,7 @@
             }
             #buttonDiv{
                 padding:1px;
+                margin: 0 auto;
             }
             #tbItem{
                 position: absolute;
@@ -364,6 +383,10 @@
                 right:1vw;
                 top:3vh;
             }
+            #startButt{
+                position:relative;  
+                left:32%;
+            }
         }
         
     
@@ -390,9 +413,14 @@
                 grid-template-columns: 8;
                 text-align: center;
                 margin:1vh;
+                height:17vh;
             }
             #tbItem{
                 grid-column: 3 / span 6;
+            }
+            #startButt{
+                position: relative;
+                left:35%;
             }
         }
 
@@ -508,7 +536,7 @@
 
 
     <grid-item id="item3">
-        <div>
+        <div id="scoreCont">
             <div id="otherScoreDiv">
                 <h7 id="otherFactText"></h7>
             </div>
@@ -1676,7 +1704,7 @@
         }
 
         const scale = 25;
-
+        //draws table based on level array
         function drawGrid(level) {
             return elt("table", {
                 class: "background",
@@ -1691,7 +1719,8 @@
                     })))
             ));
         }
-
+        //reads startActors object array to and adds divs with
+        //the objects type as class
         function drawActors(actors) {
             return elt("div", {}, ...actors.map(actor => {
                 let rect = elt("div", {
@@ -1705,6 +1734,7 @@
             }));
         }
 
+        //replaces actor objects and runs sroll function
         DOMDisplay.prototype.syncState = function (state) {
             if (this.actorLayer) this.actorLayer.remove();
             this.actorLayer = drawActors(state.actors);
@@ -1713,6 +1743,8 @@
             this.scrollPlayerIntoView(state);
         };
 
+        //detects the players position, and if the position is a third
+        //away from the edge of the viewport the dom content is scrolled through.
         DOMDisplay.prototype.scrollPlayerIntoView = function (state) {
             let width = this.dom.clientWidth;
             let height = this.dom.clientHeight;
@@ -1738,7 +1770,7 @@
                 this.dom.scrollTop = center.y + margin - height;
             }
         };
-
+        //is used to check whether the player is touching something
         Level.prototype.touches = function (pos, size, type) {
             let xStart = Math.floor(pos.x);
             let xEnd = Math.ceil(pos.x + size.x);
@@ -1755,7 +1787,7 @@
             }
             return false;
         };
-
+        //is for an
         Level.prototype.touches2 = function (pos, size, type) {
             let xStart = Math.floor(pos.x);
             let xEnd = Math.ceil(pos.x + size.x);
@@ -1877,12 +1909,14 @@
             let xSpeed = 0;
             if (keys.ArrowLeft || leftButt) {
                 xSpeed -= playerXSpeed;
+                document.getElementsByClassName('player')[0].style.background = "url('images/playerLeft.png')";
                 document.getElementsByClassName('player')[0].setAttribute('id', 'plyrLeft');
                 let x = document.getElementById('plyrLeft');
                 console.log(x);
             }
             if (keys.ArrowRight || rightButt) {
                 xSpeed += playerXSpeed;
+                document.getElementsByClassName('player')[0].style.background = "url('images/playerRight.png')";
                 document.getElementsByClassName('player')[0].setAttribute('id', 'plyrRight');   
                 let x = document.getElementById('plyrRight');
                 console.log(x);         
