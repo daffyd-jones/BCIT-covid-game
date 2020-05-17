@@ -70,7 +70,7 @@
         }
 
 
-        .lava {
+        .infected {
             /*background: tomato;*/
             background: url("images/lava.png");
         }
@@ -519,14 +519,14 @@
                 <div id="loseDiv">
                     <h3>Sorry you ran out of lives</h3>
                     <h5>Click the button below to start again</h5>
-                    <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
+                    <button id="startButt" onclick="runGame(GAME_LEVELS, GameDisplay);">Click to start!</button>
 
                 </div>
                 <div id="homeDiv">
                     <h3>Welcome to Covid Game</h3>
                     <h5>Avoid viruses and contaminated surfaces while collecting toilet paper</h5>
                     <h5>Full screen is recommended for mobile</h5>
-                    <button id="startButt" onclick="runGame(GAME_LEVELS, DOMDisplay);">Click to start!</button>
+                    <button id="startButt" onclick="runGame(GAME_LEVELS, GameDisplay);">Click to start!</button>
 
                 </div>
             </div>
@@ -596,10 +596,10 @@
         let musicBool = true;
         function musicTogg(){
             if(musicBool){
-                bgAudio.pause();
+                bgAudio.volume = 0;
                 musicBool = false;
             } else if (!musicBool){
-                bgAudio.play();
+                bgAudio.volume = 0.5;
                 musicBool = true;
             }
         }
@@ -622,9 +622,11 @@
         
 
         let capstone = "................................................................\n"
-            + ".##############################################################.\n";
+            + ".##############################################################.\n"
+            + ".#............................................................#.\n";
 
-        let foundation = ".##############################################################.\n"
+        let foundation = ".#............................................................#.\n"
+            + ".##############################################################.\n" 
             + "................................................................";
 
         let tileMaps = [
@@ -642,7 +644,7 @@
                 "...o.o.o..o.o.o.o..."
             ],
             [
-                "...o.o.....#o.o.....",
+                "...o.o.....#..o.....",
                 ".#o.o.o...######..##",
                 "..#####o..|.#.o....o",
                 "..oo.o#.o....o....o.",
@@ -687,7 +689,7 @@
                 ".########....o.#..o.",
                 "..o.#o.o...|o.o..o.o",
                 "...o#.o...######..o.",
-                "...........o#o.o...o"
+                "............#o.o...o"
             ],
             [
                 "o.o.o..o.#.o.o.#.o..",
@@ -872,66 +874,16 @@
 
         ];
 
-        //this is a level template
-        let simpleLeveldddPlan = [
+        let GAME_LEVELS = [
             '......................\n' +
             '.###################..\n' +
-            '.#.................#..\n' +
-            '.#.&........p......#..\n' +
-            '.#.................#..\n' +
+            '.#..............=..#..\n' +
+            '.#.&........|......#..\n' +
+            '.#......o..........#..\n' +
             '.#.@...............#..\n' +
             '.#.................#..\n' +
             '.###################..\n' +
             '......................\n',
-
-            '........................................................................................\n' +
-            '.######################################################################################.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.######################################################################################.\n' +
-            '........................................................................................\n',
-
-            
-            
-            
-            '........................................................................................\n' +
-            '.######################################################################################.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.#....................................................................................#.\n' +
-            '.######################################################################################.\n' +
-            '........................................................................................\n'];
-
-        //array of game levels
-        let GAME_LEVELS = [
-            
             
             '........................................................................................\n' +
             '.######################################################################################.\n' +//1
@@ -1277,322 +1229,6 @@
             '.#ooooooooooo#.......#.....o...................#oo..........................o.........#.\n' +
             '.######################################################################################.\n' +
             '........................................................................................\n',
-
-            '.......................................\n' +
-            '.#####################################.\n' +//17
-            '.#vv...vv..|..|..#+++....v....=...ooo#.\n' +
-            '.#...o...........#++..........=...ooo#.\n' +
-            '.#..o.o..#.......#+...........########.\n' +
-            '.#.......#......=#...............v..##.\n' +
-            '.#oo...oo#.......#.o+o+.............##.\n' +
-            '.#.......#.......#.o+o+o............##.\n' +
-            '.#oo...oo#=......#+++o+o............##.\n' +
-            '.#.......#.......#..................##.\n' +
-            '.#ooo.ooo#.......############.......##.\n' +
-            '.#oo...oo#...=...#|o+o+o+o|##.......##.\n' +
-            '.#o.o.o.o#.......#.o+o+o+o.##.......##.\n' +
-            '.###...###..........+.+.+..##.......##.\n' +
-            '.#+++o+++#.................##.......##.\n' +
-            '.#++.o.++#....=..#.........##.......##.\n' +
-            '.#+..o..+#.......############.......##.\n' +
-            '.#=......#..........................##.\n' +
-            '.#...@.=.#..........................##.\n' +
-            '.#####################################.\n' +
-            '.......................................\n',
-
-            '.............v........\n' +
-            '..#.@..............#..\n' +//18
-            '..#..........o.....#..\n' +
-            '..#.........ooo....#..\n' +
-            '..#........ooooo...#..\n' +
-            '..#=....=.....=....#..\n' +
-            '..#ooooooo&oooooooo#..\n' +//1up
-            '..##################..\n' +
-            '......................\n',
-
-            '.......||||||||.......\n' +
-            '..#.@..............#..\n' +//19
-            '..####....oo.......#..\n' +
-            '..#.......oo.......#..\n' +
-            '..#.......oo.......#..\n' +
-            '..#.......oo.......#..\n' +
-            '..#.......oo.......#..\n' +
-            '..#+...oooooooo...+#..\n' +
-            '..#++...oooooo...++#..\n' +
-            '..#+++...oooo...+++#..\n' +
-            '..#++++...oo...++++#..\n' +
-            '..##################..\n' +
-            '......................\n',
-
-            '...........v.|.v......\n' +
-            '..#.@..............#..\n' +//20
-            '..#..........o.....#..\n' +
-            '..#.........ooo....#..\n' +
-            '..#........ooooo...#..\n' +
-            '..###.#######.###..#..\n' +
-            '..#=....=.....=....#..\n' +
-            '..#oooooooooooooooo#..\n' +
-            '..##################..\n' +
-            '......................\n',
-
-            '......................\n' +
-            '..#...++++++...oo..#..\n' +//21
-            '..#..++oo&++.......#..\n' +//1up
-            '..#.++oooo++..=....#..\n' +
-            '..#.+ooo+++........#..\n' +
-            '..#.+oo++.=........#..\n' +
-            '..#................#..\n' +
-            '..#.@..............#..\n' +
-            '..#................#..\n' +
-            '..##################..\n' +
-            '......................\n',
-
-            '...............................\n' +
-            '.#############################.\n' +//22
-            '.#+o+o+o+o+o+o+o+o+o+o+o+o+o+#.\n' +
-            '.#+o+o+o+o+o+o+o+o+o+o+o+o+o+#.\n' +
-            '.#+o+o+o+o+o+o+o+o+o+o+o+o+o+#.\n' +
-            '.#......=............=.......#.\n' +
-            '.#...@.....=......=..........#.\n' +
-            '.#############################.\n' +
-            '...............................\n',
-
-            '.......................................\n' +
-            '.#####################################.\n' +//23
-            '.#=.........++..o..++....oo....++oooo#.\n' +
-            '.#=..........o.....++....oo....++....#.\n' +
-            '.#=..........o.....++....++....++....#.\n' +
-            '.#=........o++.....oo....++....oo....#.\n' +
-            '.#=....@...o++.....oo....++....oo....#.\n' +
-            '.#####################################.\n' +
-            '.......................................\n',
-
-            '.......................................\n' +
-            '.#####################################.\n' +//24
-            '.#.......o......|...|...|.oo|...|.vv.#.\n' +
-            '.#....................o...........o&.#.\n' +//1up
-            '.#...oo..........oo..................#.\n' +
-            '.#...++#......................oo.....#.\n' +
-            '.#...++#.............................#.\n' +
-            '.#.@....oooo=#oooo=ooooo++ooooooooo.=#.\n' +
-            '.#####################################.\n' +
-            '.......................................\n',
-
-            '.......................................\n' +
-            '.#####################################.\n' +//25
-            '.#...|.#ooooo...............+++++++..#.\n' +
-            '.#...o.#vovov...............oooooo+..#.\n' +
-            '.#...o.#....................oooooo+..#.\n' +
-            '.#...o.#....................+++++++..#.\n' +
-            '.#...|......................#######..#.\n' +
-            '.#.............................|||...#.\n' +
-            '.#.....##############................#.\n' +
-            '.#.....#ooooo.........=........ooo...#.\n' +
-            '.#...@.#ooooo.........=........ooo...#.\n' +
-            '.#####################################.\n' +
-            '.......................................\n',
-
-            '......................\n' +
-            '.###################..\n' +//template level?
-            '.#............o....#..\n' +
-            '.#.................#..\n' +
-            '.#.................#..\n' +
-            '.#.@...............#..\n' +
-            '.#.................#..\n' +
-            '.###################..\n' +
-            '......................\n',
-
-            '.......v..............\n' +
-            '..#......|.........#..\n' +//26
-            '..#..............=.#..\n' +
-            '..#.........o.o....#..\n' +
-            '..#.@......#####...#..\n' +
-            '..#####............#..\n' +
-            '......#++++++++++++#..\n' +
-            '......##############..\n' +
-            '......................\n',
-
-            '......................\n' +
-            '..#................#..\n' +//27
-            '..#..............=&#..\n' +//1up
-            '..#.........o.o....#..\n' +
-            '..#.@......#####...#..\n' +
-            '..#####............#..\n' +
-            '......#++++++++++++#..\n' +
-            '......##############..\n' +
-            '......................\n',
-
-            '.......................................\n' +
-            '.#####################################.\n' +
-            '.#..........#.o.o...........o.o..o.o.#.\n' +
-            '.#.......=..#o.o.o.........o.o.o..o.o#.\n' +
-            '.#.o.o.+....#######.o.......o.o..o.o.#.\n' +
-            '.#o.o.o#.....o.o.o#o.o..=..o.o.o######.\n' +
-            '.#######..........#####...#######o.v.o.\n' +
-            '.#.....#..........#o.o.......o.o#......\n' +
-            '.#...oo...........#.o.o................\n' +
-            '.#...oo...........######+.o..o...o..=#.\n' +
-            '.#######+++++...................o.o.o#.\n' +
-            '.#o.o.o#+++++..................+######.\n' +
-            '.#.o.o.#####+..+#####..................\n' +
-            '.#..|..#o.o.....o.o.#|..=..............\n' +
-            '.#..=..#.o.......o.o######+..+########.\n' +
-            '.#.....+...........+#...............=#.\n' +
-            '.#....@...........++#o.o=o.o.o.o.o.o.o.\n' +
-            '.#...............+++#.o.o.o.o=o.o.o.o..\n' +
-            '.#####################################.\n' +
-            '.......................................\n',
-
-            '..........................................\n' +
-            '.########################################.\n' +
-            '.#oo.............#.......|........oo.oo.#.\n' +
-            '.#...#...........=................oo.o.o#.\n' +
-            '.#.........#o.oo.o+o.oo.#.........#######.\n' +
-            '.#...........##############........oo...#.\n' +
-            '.#+++....+++.oo.o#o.oo.......|...oo..oo.#.\n' +
-            '.#....o...................=#.......oo...#.\n' +
-            '.#.ooo..........+..........#............#.\n' +
-            '.#.oooo.....=..+#+=.......###############.\n' +
-            '.#..............................+oo.oo.o#.\n' +
-            '.#o.o...|........+++#................+oo#.\n' +
-            '.####..........++#|ooo....#.............#.\n' +
-            '.####...........#.oo.o...#...........=..#.\n' +
-            '.########........##########.......++....#.\n' +
-            '.#o+oo#=.......#o.o.o.o.#........++o..o.#.\n' +
-            '.#........+#.o.o.o.o.................o..#.\n' +
-            '.#..@....++#..........=#............o...#.\n' +
-            '.#.......+++#+++++++++++++++++++++++++++#.\n' +
-            '.########################################.\n' +
-            '..........................................\n',
-
-            '............................\n' +
-            '.##########################.\n' +
-            '.#+++..................+++#.\n' +
-            '.#++..................o.++#.\n' +
-            '.#+........=#............+#.\n' +
-            '.#o.o.oo.o.o#####+..+######.\n' +
-            '.#.o.oo.o.oo#.............#.\n' +
-            '.############.............#.\n' +
-            '.#..@..#.....oo..oo...v...#.\n' +
-            '.#.....#.......oo.........#.\n' +
-            '.#.....#.......oo......####.\n' +
-            '.#..o........oo..oo.......#.\n' +
-            '.#.......v................#.\n' +
-            '.########......=#.....#o+o#.\n' +
-            '.#ooo.ooo...=.........#####.\n' +
-            '.#ooooooo.......#.....#o+o#.\n' +
-            '.##########################.\n' +
-            '............................\n',
-
-            '..............................\n' +
-            '.############################.\n' +
-            '.#....v.....v.....v.....v...#.\n' +
-            '.#...v.....v.....v.....v....#.\n' +
-            '.####..|+++..|###..|+++..|###.\n' +
-            '.#...ooo...ooo...ooo...ooo.o#.\n' +
-            '.#.@.ooo...ooo...ooo...ooo.o#.\n' +
-            '.############################.\n' +
-            '..............................\n',
-
-            '.....................................................\n' +
-            '.###################################################.\n' +
-            '.#+++............#+++....v......+++#+......v.......#.\n' +
-            '.#++..oo.........#++.............++#++.............#.\n' +
-            '.#.......#####....oo..............+#+++............#.\n' +
-            '.#=......#+++...............o......#++++...&.......#.\n' +//1up
-            '.#......=#++......+++.....o...o....#.oo....#......+#.\n' +
-            '.#.=.....#+........+++++.o...o..o.+#..o..........++#.\n' +
-            '.#....o=.#..=........++....o..o..++#............+++#.\n' +
-            '.#..=....#.......o.o.+....o..o..+++#...........++++#.\n' +
-            '.#....=..#...o.o.....+++.o.o.....++#+...........oo.#.\n' +
-            '.#..o=...#+...o.o.+++++.o.o.o.....+#++..........o..#.\n' +
-            '.#.......#++.o.o.o.+++...o.o....=..#+++............#.\n' +
-            '.#.......#+++.......++....o.....+++#++++...........#.\n' +
-            '.#.......############+++.........++#..oo..........+#.\n' +
-            '.#.......#..o.o.o.o.#++...........++.............++#.\n' +
-            '.#.......#...o.@.o..#+.............o............+++#.\n' +
-            '.#............o.o...#++............o...........++++#.\n' +
-            '.#.............o....#+++...........+..........+++++#.\n' +
-            '.###################################################.\n' +
-            '.....................................................\n',
-
-            '.......................................\n' +
-            '.#####################################.\n' +
-            '.#.....o.o.o...............oo.oooo.oo#.\n' +
-            '.#|.....o.o.................o.o..o.o.#.\n' +
-            '.#.....o.o.o...............oo.oooo.oo#.\n' +
-            '.#####......++.....=.......###########.\n' +
-            '.#...o.o.o................|o.o.o+o.o.#.\n' +
-            '.#....o.o....|...o.o.o....#.o.o.o.o.o#.\n' +
-            '.#.@.o.o.o........o.o................#.\n' +
-            '.#...............o.o.o...............#.\n' +
-            '.#####################################.\n' +
-            '.......................................\n',
-
-
-
-            '.............................................\n' +
-            '.###########################################.\n' +
-            '.#....o.o#+v+&+v+#...........o#oo.oo.oo.oo.#.\n' +//1up
-            '.#.@..o.o#o.o.o.o#...o#o......#............#.\n' +
-            '.#...#####............#..o#o|o#o..#######..#.\n' +
-            '.#...................o#o|.#.......#oo.oo...#.\n' +
-            '.###o.o.o.......o#o......o#o......#.o.o....#.\n' +
-            '.#.o.o........o#o...............=..........#.\n' +
-            '.#o.o.o.o.......o#o..............o#........#.\n' +
-            '.###########################################.\n' +
-            '.............................................\n',
-
-
-            '......................................\n' +
-            '.####################################.\n' +
-            '.#vvv........o.o.o#oo.oo.o=oo.o.oo.o#.\n' +
-            '.#.......=....o.o.#o.o..o.oo.o.oo.o.#.\n' +
-            '.#...o.o#####o.o.o#oo.oo.o.oo.oo.o.o#.\n' +
-            '.#..o.o.#o.o#######...............=.#.\n' +
-            '.#...####....o.o.o######..|..########.\n' +
-            '.#....=.#..........oo#........#o.o.o#.\n' +
-            '.#+++...............................#.\n' +
-            '.#######.o.#######...#####..=.......#.\n' +
-            '.#.....o..#o.o.o........o######o.o.o#.\n' +
-            '.#....o.o.#.o.o.o.......o.o.o.#.o.o.#.\n' +
-            '.#......o.#o.o.o.o.....o.o.o.o#o.o.o#.\n' +
-            '.####################################.\n' +
-            '......................................\n',
-
-            '...........................\n' +
-            '.#########################.\n' +
-            '.#.............|.........#.\n' +
-            '.#o..|o+o...o+o...o+o..|o#.\n' +
-            '.#o...o+o..|o+o...o+o...o#.\n' +
-            '.#o...o+o|..o+o...o+o...o#.\n' +
-            '.#o|..o+o...o+o...o+o...o#.\n' +
-            '.#..@............|.......#.\n' +
-            '.#...................|...#.\n' +
-            '.#########################.\n' +
-            '...........................\n',
-
-            '.....................\n' +
-            '.###################.\n' +
-            '.#oo..oo..oo..oo...#.\n' +
-            '.#..oo..oo..oo..oo.#.\n' +
-            '.#.............=...#.\n' +
-            '.#..@.......########.\n' +
-            '.#.o.o#o...o#o...o.#.\n' +
-            '.#o.o.#.o.o.#o..|o.#.\n' +
-            '.#....#o...o#o...o.#.\n' +
-            '.#.............=...#.\n' +
-            '.#.................#.\n' +
-            '.#++.++.++.++.++.++#.\n' +
-            '.#++.++.++.++.++.++#.\n' +
-            '.#......ovo........#.\n' +
-            '.#.......o.........#.\n' +
-            '.#.......o.o=|#o.o.#.\n' +
-            '.#=.....+.....#.o.o#.\n' +
-            '.#++.++o......#o.o.#.\n' +
-            '.#++&++............#.\n' +//1up
-            '.###################.\n' +
-            '.....................\n',
         ];
 
         FACT_ARRAY = [
@@ -1723,13 +1359,6 @@
             downButt = false;
         }
 
-        function allFalse() {
-            upButt = false;
-            downButt = false;
-            leftButt = false;
-            rightButt = false;
-        }
-
         function next() {
             wait = false;
         }
@@ -1737,7 +1366,8 @@
         
         function genMedium() {
             let finalMap = "";
-            let playerTile = ["....................",
+            let playerTile = [
+                "....................",
                 "....................",
                 "....................",
                 "....................",
@@ -1793,33 +1423,33 @@
         class Level {
             constructor(plan) {
                 //takes in level string and creates a matrix of symbols
-                let rows = plan.trim().split("\n").map(l => [...l]);
+                let mapMatrix = plan.trim().split("\n").map(i => [...i]);
                 //height
-                this.height = rows.length;
+                this.height = mapMatrix.length;
                 //width
-                this.width = rows[0].length;
+                this.width = mapMatrix[0].length;
                 //contains moving Objects
-                this.startActors = [];
+                this.objArray= [];
 
                 //goes through the matrix and checks the current symbol against the array "levelChars"
                 //if the symbol represents a background object it returns the type of background object
-                //else it creates an object related to the symbol and stores it in the "startActors" array
+                //else it creates an object related to the symbol and stores it in the "objArray" array
                 //then returns empty so that the background is displayed
-                this.rows = rows.map((row, y) => {
+                this.mapMatrix = mapMatrix.map((row, y) => {
                     return row.map((ch, x) => {
                         let type = levelChars[ch];
                         if (type == "puzbox") console.log("its Puzzzz")
                         if (type == "puzbox"){
                             type = PuzBox;
                             let gg = type.create(new Vec(x, y), ch);
-                            this.startActors.push(gg);
+                            this.objArray.push(gg);
                             return "puzchk";
                         }
                         if (typeof type == "string") {
                             return type;
                         }
                         let gg = type.create(new Vec(x, y), ch);
-                        this.startActors.push(gg);
+                        this.objArray.push(gg);
                         return "empty";
 
                     });
@@ -1828,16 +1458,16 @@
         }
         //used to track and alter the gameplay state
         class State {
-            constructor(level, actors, status) {
+            constructor(level, objects, status) {
                 this.level = level;
-                this.actors = actors;
+                this.objects = objects;
                 this.status = status;
             }
             static start(level) {
-                return new State(level, level.startActors, "playing");
+                return new State(level, level.objArray, "playing");
             }
             get player() {
-                return this.actors.find(a => a.type == "player");
+                return this.objects.find(a => a.type == "player");
             }
         }
         //used to represent a vector
@@ -1867,7 +1497,7 @@
             }
         }
         Player.prototype.size = new Vec(0.8, 1.5);
-        //moving box object
+        //moving box object/virus
         class Box {
             constructor(pos, speed, reset) {
                 this.pos = pos;
@@ -1886,7 +1516,7 @@
             }
         }
         Box.prototype.size = new Vec(1, 1);
-
+        //oneUp object
         class UpBox {
             constructor(pos, speed, reset, count) {
                 this.pos = pos;
@@ -1907,7 +1537,7 @@
             }
         }
         UpBox.prototype.size = new Vec(1, 1);
-
+        //for future version of the game
         class PuzBox {
             constructor(pos, speed, reset, count) {
                 this.pos = pos;
@@ -1929,23 +1559,6 @@
         }
         PuzBox.prototype.size = new Vec(1, 1);
 
-        //Arrow block object(still called Lava cause Im lazy)
-        class Lava {
-            constructor(pos, speed, reset) {
-                this.pos = pos;
-                this.speed = speed;
-                this.reset = reset;
-            }
-            get type() {
-                return "lava";
-            }
-            static create(pos, ch) {
-                if (ch == "v") {
-                    return new Lava(pos, new Vec(0, 3), pos);
-                }
-            }
-        }
-        Lava.prototype.size = new Vec(1, 1);
         //coin object
         class Coin {
             constructor(pos, basePos, wobble) {
@@ -1966,17 +1579,15 @@
         const levelChars = {
             ".": "empty",
             "#": "wall",
-            "+": "lava",
+            "+": "infected",
             "@": Player,
             "o": Coin,
             "=": Box,
             "|": Box,
-            "v": Lava,
-            "&": UpBox,
-            "p": "puzbox"
+            "&": UpBox
         }
-        //makes things and appends them to things
-        function elt(name, attrs, ...children) {
+        //makes things gives them attributes and appends them to things
+        function eleMake(name, attrs, ...children) {
             let dom = document.createElement(name);
             for (let attr of Object.keys(attrs)) {
                 dom.setAttribute(attr, attrs[attr]);
@@ -1986,73 +1597,70 @@
             }
             return dom;
         }
-        //makes parent div and 
-        class DOMDisplay {
+        //makes parent div and appends it to gameDiv in html
+        class GameDisplay {
             constructor(parent, level) {
-                this.dom = elt("div", {
+                this.dom = eleMake("div", {
                     class: "game"
                 }, drawGrid(level));
-                this.actorLayer = null;
+                this.objLayer = null;
                 document.getElementById("gameDiv").appendChild(this.dom);
             }
             clear() {
                 this.dom.remove();
             }
         }
-
+        
+        //px scale for grid
         const scale = 25;
+
         //draws table based on level array
         function drawGrid(level) {
-            return elt("table", {
+            return eleMake("table", {
                 class: "background",
                 id: "gameBack",
                 style: `width: ${level.width * scale}px`
-            }, ...level.rows.map(row =>
-                elt("tr", {
+            }, ...level.mapMatrix.map(row =>
+                eleMake("tr", {
                         style: `height: ${scale}px`
                     },
-                    ...row.map(type => elt("td", {
+                    ...row.map(type => eleMake("td", {
                         class: type
                     })))
             ));
         }
-        //reads startActors object array to and adds divs with
+        //reads objArray and adds divs with
         //the objects type as class
-        function drawActors(actors) {
-            return elt("div", {}, ...actors.map(actor => {
-                let rect = elt("div", {
-                    class: `actor ${actor.type}`
+        function drawObj(objArr) {
+            return eleMake("div", {}, ...objArr.map(obj => {
+                let divv = eleMake("div", {
+                    class: `actor ${obj.type}`
                 });
-                rect.style.width = `${actor.size.x * scale}px`;
-                rect.style.height = `${actor.size.y * scale}px`;
-                rect.style.left = `${actor.pos.x * scale}px`;
-                rect.style.top = `${actor.pos.y * scale}px`;
-                return rect;
+                divv.style.width = `${obj.size.x * scale}px`;
+                divv.style.height = `${obj.size.y * scale}px`;
+                divv.style.left = `${obj.pos.x * scale}px`;
+                divv.style.top = `${obj.pos.y * scale}px`;
+                return divv;
             }));
         }
 
-        //replaces actor objects and runs sroll function
-        DOMDisplay.prototype.syncState = function (state) {
-            if (this.actorLayer) this.actorLayer.remove();
-            this.actorLayer = drawActors(state.actors);
-            this.dom.appendChild(this.actorLayer);
+        //replaces objects and runs sroll function
+        GameDisplay.prototype.syncState = function (state) {
+            if (this.objLayer) this.objLayer.remove();
+            this.objLayer = drawObj(state.objects);
+            this.dom.appendChild(this.objLayer);
             this.dom.className = `game ${state.status}`;
-            this.scrollPlayerIntoView(state);
+            this.centerPlayer(state);
         };
 
         //detects the players position, and if the position is a third
         //away from the edge of the viewport the dom content is scrolled through.
-        DOMDisplay.prototype.scrollPlayerIntoView = function (state) {
+        GameDisplay.prototype.centerPlayer = function (state) {
             let width = this.dom.clientWidth;
             let height = this.dom.clientHeight;
             let margin = width / 3;
-
-            //viewport
-            let left = this.dom.scrollLeft,
-                right = left + width;
-            let top = this.dom.scrollTop,
-                bottom = top + height;
-
+            let left = this.dom.scrollLeft, right = left + width;
+            let top = this.dom.scrollTop, bottom = top + height;
             let player = state.player;
             let center = player.pos.plus(player.size.times(0.5)).times(scale);
 
@@ -2069,97 +1677,76 @@
         };
         //is used to check whether the player is touching something
         Level.prototype.touches = function (pos, size, type) {
-            let xStart = Math.floor(pos.x);
-            let xEnd = Math.ceil(pos.x + size.x);
-            let yStart = Math.floor(pos.y);
-            let yEnd = Math.ceil(pos.y + size.y);
+            let xS = Math.floor(pos.x);
+            let xE = Math.ceil(pos.x + size.x);
+            let yS = Math.floor(pos.y);
+            let yE = Math.ceil(pos.y + size.y);
 
-            for (let y = yStart; y < yEnd; y++) {
-                for (let x = xStart; x < xEnd; x++) {
+            for (let y = yS; y < yE; y++) {
+                for (let x = xS; x < xE; x++) {
                     let isOutside = x < 0 || x >= this.width ||
                         y < 0 || y >= this.height;
-                    let here = isOutside ? "wall" : this.rows[y][x];
+                    let here = isOutside ? "wall" : this.mapMatrix[y][x];
                     if (here == type) return true;
                 }
             }
             return false;
         };
-        //is for an
-        Level.prototype.touches2 = function (pos, size, type) {
-            let xStart = Math.floor(pos.x);
-            let xEnd = Math.ceil(pos.x + size.x);
-            let yStart = Math.floor(pos.y);
-            let yEnd = Math.ceil(pos.y + size.y);
-
-            for (let y = yStart; y < yEnd; y++) {
-                for (let x = xStart; x < xEnd; x++) {
-                    
-                    if (this.rows[y][x -1] == type) return true;
-                    if (this.rows[y][x +1] == type) return true;
-                    if (this.rows[y -1][x] == type) return true;
-                    if (this.rows[y +1][x] == type) return true;
-                    let here = this.rows[y][x];
-                    if (here == type) return true;
-                }
-            }
-            return false;
-        };
-
-
-        function overlap(actor1, actor2) {
-            return actor1.pos.x + actor1.size.x > actor2.pos.x &&
-                actor1.pos.x < actor2.pos.x + actor2.size.x &&
-                actor1.pos.y + actor1.size.y > actor2.pos.y &&
-                actor1.pos.y < actor2.pos.y + actor2.size.y;
+        //checks whether objects overlap
+        function overlap(obj1, obj2) {
+            return obj1.pos.x + obj1.size.x > obj2.pos.x &&
+                obj1.pos.x < obj2.pos.x + obj2.size.x &&
+                obj1.pos.y + obj1.size.y > obj2.pos.y &&
+                obj1.pos.y < obj2.pos.y + obj2.size.y;
         }
-
-        Lava.prototype.collide = function (state) {
+        //box/virus collision method
+        //plays lose audio and reduces life count
+        //returns new state with lost status for map reset
+        Box.prototype.collision = function (state) {  
             loseAudio.play();
             lives -= 1;
-            return new State(state.level, state.actors, "lost");
+            return new State(state.level, state.objects, "lost");
         };
-
-        Box.prototype.collide = function (state) {  
-            loseAudio.play();
-            lives -= 1;
-            return new State(state.level, state.actors, "lost");
-        };
-
-        UpBox.prototype.collide = function (state) {
+        //oneUp box collision method
+        //if the box hasnt been used before, the life count is
+        //increased by one, upCount is used to signify that the box 
+        //has been used, and the oneUp audio is played
+        //returns current state
+        UpBox.prototype.collision = function (state) {
             if (this.count){
                 lives += 1;
                 this.upCount();
+                oneUpAudio.play();
             }
-            oneUpAudio.play();
             console.log("Upbox count: " + this.count)
             document.getElementById("livesText").innerHTML = "Lives: " + lives;
-            return new State(state.level, state.actors, "playing");
+            return new State(state.level, state.objects, "playing");
         };
-
-        PuzBox.prototype.collide = function (state) {
-            return new State(state.level, state.actors, "playing");
+        //puzzle box feature that is for future version of the game
+        PuzBox.prototype.collision = function (state) {
+            return new State(state.level, state.objects, "playing");
         };
-
-        Coin.prototype.collide = function (state) {
+        //coin collision method
+        //has since become toilet paper
+        //sets coin sound to beginning and plays sound
+        //removes this coin object from objects array
+        //checks to see if there are any more coin objects
+        //if there arent a state is returned with  a win status
+        //otherwise the current status is returned
+        Coin.prototype.collision = function (state) {
             coinAudio.currentTime = 0;
             coinAudio.play();
-            let filtered = state.actors.filter(a => a != this);
+            let filt = state.objects.filter(a => a != this);
             let status = state.status;
-            if (!filtered.some(a => a.type == "coin")) status = "won";
-            return new State(state.level, filtered, status);
+            if (!filt.some(a => a.type == "coin")) status = "won";
+            return new State(state.level, filt, status);
         };
-
-        Lava.prototype.update = function (time, state) {
-            let newPos = this.pos.plus(this.speed.times(time));
-            if (!state.level.touches(newPos, this.size, "wall")) {
-                return new Lava(newPos, this.speed, this.reset);
-            } else if (this.reset) {
-                return new Lava(this.reset, this.speed, this.reset);
-            } else {
-                return new Lava(this.pos, this.speed.times(-1));
-            }
-        };
-
+        //box update method
+        //creates new position based on previous plus the movement 
+        //rate of the box object
+        //checks to see if the next space is a wall then returns a new box
+        //in that position. else resets position or changes the direction 
+        //of box movement
         Box.prototype.update = function (time, state) {
             let newPos = this.pos.plus(this.speed.times(time));
             if (!state.level.touches(newPos, this.size, "wall")) {
@@ -2170,14 +1757,17 @@
                 return new Box(this.pos, this.speed.times(-1));
             }
         };
-
+        //oneUp update method
+        //creates new position and chaecks to see if new position 
+        //is a wall then creates new oneUp object in that position
+        //speed for oneUp is 0
         UpBox.prototype.update = function (time, state, keys) {
             let newPos = this.pos.plus(this.speed.times(time));
             if (!state.level.touches(newPos, this.size, "wall")) {
                 return new UpBox(newPos, this.speed, this.reset, this.count);
             } 
         };
-
+        //feature for future version of the game
         PuzBox.prototype.update = function (time, state, keys) {
             let player = state.player;
             if (state.level.touches2(player.pos, player.size, this)){
@@ -2190,29 +1780,37 @@
                 return new PuzBox(newPos, this.speed, this.reset, this.count);
             } 
         };
-
+        //wobble speed and distance for coin animation
         const wobbleSpeed = 8;
         const wobbleDist = 0.07;
-
+        //coin update method
+        //sets movement speed and uses a Math.sin function to control 
+        //position, returns new position of the coin object
         Coin.prototype.update = function (time) {
             let wobble = this.wobble + time * wobbleSpeed;
             let wobblePos = Math.sin(wobble) * wobbleDist;
             return new Coin(this.basePos.plus(new Vec(0, wobblePos)), this.basePos, wobble);
         };
-
-        const playerXSpeed = 5;
-
+        //movement rate of the player object
+        const playerSpeed = 5;
+        //player update method
+        //creates x speed variable and checks to see whether a left or right arrow key or touch button is held down
+        //if so player speed is added or removed from s apeed variable and the player div background image is changed
+        //current position of player object is called, new x position is current plus movement speed
+        //if new x position is not in wall space, pos takes new x value. 
+        //the same is done with the y direction minus the player div background change
+        //returns new player object at new position
         Player.prototype.update = function (time, state, keys) {
             let xSpeed = 0;
             if (keys.ArrowLeft || leftButt) {
-                xSpeed -= playerXSpeed;
+                xSpeed -= playerSpeed;
                 document.getElementsByClassName('player')[0].style.background = "url('images/playerLeft.png')";
                 document.getElementsByClassName('player')[0].setAttribute('id', 'plyrLeft');
                 let x = document.getElementById('plyrLeft');
                 console.log(x);
             }
             if (keys.ArrowRight || rightButt) {
-                xSpeed += playerXSpeed;
+                xSpeed += playerSpeed;
                 document.getElementsByClassName('player')[0].style.background = "url('images/playerRight.png')";
                 document.getElementsByClassName('player')[0].setAttribute('id', 'plyrRight');   
                 let x = document.getElementById('plyrRight');
@@ -2225,11 +1823,11 @@
             }
             let ySpeed = 0;
             if (keys.ArrowUp || upButt) {
-                ySpeed -= playerXSpeed;
+                ySpeed -= playerSpeed;
                 //allFalse();
             }
             if (keys.ArrowDown || downButt) {
-                ySpeed += playerXSpeed;
+                ySpeed += playerSpeed;
                 //allFalse();
             }
             let movedY = pos.plus(new Vec(0, ySpeed * time));
@@ -2239,38 +1837,39 @@
             return new Player(pos, new Vec(xSpeed, ySpeed));
 
         };
-
+        //updates objects, sets new state, if new state isnt playing newState is returned
+        //get player, check if player is touching infected item
+        //check if player is touching box, check if player touching upbox
+        //check if player overlaps with object, runs collison function if true
         State.prototype.update = function (time, keys) {
-            let actors = this.actors.map(actor => actor.update(time, this, keys));
-            let newState = new State(this.level, actors, this.status);
+            let objects = this.objects.map(object => object.update(time, this, keys));
+            let newState = new State(this.level, objects, this.status);
             console.log("in the State.update: " + newState.status);
             if (newState.status != "playing") return newState;
 
             let player = newState.player;
-            if (this.level.touches(player.pos, player.size, "lava")) {
+            if (this.level.touches(player.pos, player.size, "infected")) {
                 loseAudio.play();
                 lives -= 1;
-                return new State(this.level, actors, "lost");
+                return new State(this.level, objects, "lost");
             } else if (this.level.touches(player.pos, player.size, "box")) {
-                return new State(this.level, actors, "lost");
+                return new State(this.level, objects, "lost");
             } else if (this.level.touches(player.pos, player.size, "upbox")){
                 lives += 1;
-                return new State(this.level, actors, "playing");
-            } else if (this.level.touches(player.pos, player.size, "puzbox")){
-
+                return new State(this.level, objects, "playing");
             }
 
-            for (let actor of actors) {
-                if (actor != player && overlap(actor, player)) {
-                    if(actor.type == "puzbox") gg++;
-                    console.log("actor type: " + actor.type);
-                    newState = actor.collide(newState);
+            for (let obj of objects) {
+                if (obj != player && overlap(obj, player)) {
+                    if(obj.type == "puzbox") gg++;
+                    console.log("actor type: " + obj.type);
+                    newState = obj.collision(newState);
                 }
             }
             return newState;
         };
-
-        function trackKeys(keys) {
+        //tracks key down and up states to continue movement while held down
+        function keys(keys) {
             let down = Object.create(null);
 
             function track(event) {
@@ -2283,8 +1882,8 @@
             window.addEventListener("keyup", track);
             return down;
         }
-
-        const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "KeyA"]);
+        //keys is used to track whether an arrow button is pressed
+        const arrowKeys = keys(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "KeyA"]);
 
         function runAnimation(frameFunc) {
             let lastTime = null;
@@ -2299,23 +1898,33 @@
             }
             requestAnimationFrame(frame);
         }
-
+        //sets current level to 0 on page load
         let curLev = 0;
-
+        //level run function
         function runLevel(level, Display) {
+            //creats new game layout using GameDisplay
             let display = new Display(document.body, level);
+            //sets new state using start method
             let state = State.start(level);
-            let ending = 1;
+            //endTime used to provide the user with a moment to see 
+            //why level is changing
+            let endTime = 1;
             return new Promise(resolve => {
+                //promice is used to run runAnimation function
                 runAnimation(time => {
+                    //state is updated to set objects at new positions
                     state = state.update(time, arrowKeys);
+                    //syncState is used to reset display using new positions
                     display.syncState(state);
                     if (state.status == "playing") {
+                        //if the current status is playing the promise is run again
                         return true;
-                    } else if (ending > 0) {
-                        ending -= time;
+                    } else if (endTime > 0) {
+                        //else if endTime is more than 0, endtime is decreased and the promise re run
+                        endTime -= time;
                         return true;
                     } else {
+                        //else the board is cleared and the current status is used to resolve the promise
                         display.clear();
                         resolve(state.status);
                         return false;
@@ -2323,20 +1932,21 @@
                 });
             });
         }
-
-        function runRunGame(){  
-
-        }
-
+        //run Game gunction
         async function runGame(plans, Display) {
+            //sets lives amt to 5
             lives = 5;
+            //removes landing and lose dom elements and displays game elements
             document.getElementById('homeDiv').style.display = "none";
             document.getElementById('loseDiv').style.display = "none";
             document.getElementById('buttonDiv').style.visibility = "visible";
             document.getElementById('scoreDiv').style.visibility = "visible";
             document.getElementById('otherScoreDiv').style.visibility = "visible";
+            //plays background audio
             bgAudio.play();
+            //loop is used to continually run the runLevel function
             for (let level = 0; level < plans.length;) {
+                //displays facts from fact array and updates lives and level display
                 let fact = Math.floor(Math.random()*FACT_ARRAY.length);
                 console.log("fact number: " + fact);
                 document.getElementById("factText").innerHTML = FACT_ARRAY[fact];
@@ -2345,28 +1955,26 @@
                 document.getElementById("livesText").innerHTML = "Lives: " + lives;
                 console.log("Level: " + (level + 1));
                 console.log("lives: " + lives);
-
+                //map gen function run, runLevel is run and returns the status returned by its promise
                 let randMap = genMedium()
-
                 let status = await runLevel(new Level(randMap), Display);
+                //let status = await runLevel(new Level(plans[level]), Display);
+                //if the level is won the level is raised -- (since the map gen was introduced 
+                //this only affects win display)
                 if (status == "won") level++;
+                //if lives is equal to zero, the loop is broken and the lose display is shown
                 else if (lives == 0) {
-                    console.log("You Lose!!");
-                    loseAudio.play();
+                    console.log("You Lose");
                     break
-                } else if (level == plans.length) {
-                    console.log("Youve won!");
-                    winAudio.play();
-                    break;
-                }
-                
+                } 
             }
             document.getElementById('loseDiv').style.display = "block";
 
         }
         
 
-
+        //landing page function
+        //shows landing screen and hides gameplay elements
         function main(){
             document.getElementById('homeDiv').style.display = "block";
             document.getElementById('loseDiv').style.display = "none";
