@@ -629,6 +629,57 @@
             + ".##############################################################.\n" 
             + "................................................................";
 
+        let playerTile = [
+            [
+                "....................",
+                "....................",
+                "....................",
+                "....................",
+                "........@...........",
+                "....................",
+                "....................",
+                "....................",
+                "....................",
+                "...................."
+            ],
+            [
+                "o.o..o.....o.o#...o.",
+                "...o.###...####o.o..",
+                "o.o.o#o..oo.oo..o..o",
+                ".####o....o.o...o.o.",
+                ".o.o.o.o#...=.######",
+                "o.o.o.o.#o.o.o#o.o.o",
+                ".########.o.o.#.o.o.",
+                ".o.o.&.o#=....#o.o.o",
+                "..o@o.o.#........=.#",
+                "...o.o.o..o.o.o.o..."
+            ],
+            [
+                "...o.o.....#..o.....",
+                ".#@.o.o...######..##",
+                "..#####o..|.#.o....o",
+                "..oo.o#.o....o....o.",
+                ".oo.o.#o.....o...o.o",
+                "###o.o#.o..#o.o|..o.",
+                "o.#.o....=#######..#",
+                ".o#o.o....o.o#.o...o",
+                "..#####....=.#o..o..",
+                ".o.o.o.......#..o.o."
+            ],
+            [
+                "...o.o.#............",
+                ".o########.....=.###",
+                "..#+o.o.o.o.o.#o.o..",
+                ".o#o.o.o.....=#.o...",
+                ".@o.o.#o.o.o#####+..",
+                ".o.o.+#=.....#o.o...",
+                "#########o.o.#.o.o..",
+                "..o+#+.o....+#o.o...",
+                ".o.o#.o.o#=..o.o.o#..",
+                "..o.#..o....o.o.o.#."
+            ]
+        ]
+
         let tileMaps = [
 
             [
@@ -1363,23 +1414,87 @@
             wait = false;
         }
 
-        
+        function chooseGen() {
+            let genMap;
+            let rand = Math.floor(Math.random() * 5);
+            switch (rand) {
+                case 0:
+                    genMap = genSmall();
+                    console.log("gen 0");
+                    break;
+                case 1:
+                    genMap = genSmall();
+                    console.log("gen 1");
+
+                    break;
+                case 2:
+                    genMap = genMedium();
+                    console.log("gen 2");
+
+                    break;
+                case 3:
+                    genMap = genMedium();
+                    console.log("gen 3");
+
+                    break;
+                case 4:
+                    genMap = genLarge();
+                    console.log("gen 4");
+
+                    break;
+                default:
+                    genMap = genSmall();
+                    console.log("gen d");
+
+            }
+            return genMap;
+        }
+
+        function genSmall() {
+            let finalMap = "";
+
+            let tileOrder = [];
+            let genPlayer = Math.floor(Math.random() * 4);
+            tileOrder.push(playerTile[genPlayer]);
+
+            for (let j = 1; j < 4; j++) {
+
+                let gen = Math.floor(Math.random() * 10);
+                console.log("adding tile " + gen + " to map")
+                tileOrder.push(tileMaps[gen]);
+            }
+
+            finalMap += capstone;
+
+            for (let k = 0; k < 10; k++) {
+                finalMap += ".#";
+                for (let i = 0; i < 2; i++) {
+
+                    finalMap += tileOrder[i][k];
+                }
+                finalMap += "#.\n";
+            }
+            for (let k = 0; k < 10; k++) {
+                finalMap += ".#";
+                for (let i = 2; i < 4; i++) {
+
+                    finalMap += tileOrder[i][k];
+                }
+                finalMap += "#.\n";
+            }
+
+            finalMap += foundation;
+
+            return finalMap;
+            console.log("\n\n" + finalMap);
+        }
+
         function genMedium() {
             let finalMap = "";
-            let playerTile = [
-                "....................",
-                "....................",
-                "....................",
-                "....................",
-                "........@...........",
-                "....................",
-                "....................",
-                "....................",
-                "....................",
-                "...................."
-            ]
+            
             let tileOrder = [];
-            tileOrder.push(playerTile);
+            let genPlayer = Math.floor(Math.random() * 4);
+            tileOrder.push(playerTile[genPlayer]);
 
             for (let j = 1; j < 6; j++) {
 
@@ -1413,7 +1528,52 @@
             console.log("\n\n" + finalMap);
         }
 
+        function genLarge() {
+            let finalMap = "";
 
+            let tileOrder = [];
+            let genPlayer = Math.floor(Math.random() * 4);
+            tileOrder.push(playerTile[genPlayer]);
+
+            for (let j = 1; j < 9; j++) {
+
+                let gen = Math.floor(Math.random() * 10);
+                console.log("adding tile " + gen + " to map")
+                tileOrder.push(tileMaps[gen]);
+            }
+
+            finalMap += capstone;
+
+            for (let k = 0; k < 10; k++) {
+                finalMap += ".#";
+                for (let i = 0; i < 3; i++) {
+
+                    finalMap += tileOrder[i][k];
+                }
+                finalMap += "#.\n";
+            }
+            for (let k = 0; k < 10; k++) {
+                finalMap += ".#";
+                for (let i = 3; i < 6; i++) {
+
+                    finalMap += tileOrder[i][k];
+                }
+                finalMap += "#.\n";
+            }
+            for (let k = 0; k < 10; k++) {
+                finalMap += ".#";
+                for (let i = 6; i < 9; i++) {
+
+                    finalMap += tileOrder[i][k];
+                }
+                finalMap += "#.\n";
+            }
+
+            finalMap += foundation;
+
+            return finalMap;
+            console.log("\n\n" + finalMap);
+        }
       
 
 
@@ -1956,7 +2116,7 @@
                 console.log("Level: " + (level + 1));
                 console.log("lives: " + lives);
                 //map gen function run, runLevel is run and returns the status returned by its promise
-                let randMap = genMedium()
+                let randMap = chooseGen();
                 let status = await runLevel(new Level(randMap), Display);
                 //let status = await runLevel(new Level(plans[level]), Display);
                 //if the level is won the level is raised -- (since the map gen was introduced 
