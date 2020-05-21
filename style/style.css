@@ -1,5 +1,5 @@
                 .background {
-                    background: url("images/empty.png");
+                    background: url("../images/empty.png");
                     /*background: gray;*/
                     table-layout: fixed;
                     border-spacing: 0;
@@ -65,11 +65,11 @@
 
                 .infected {
                     /*background: tomato;*/
-                    background: url("images/lava.png");
+                    background: url("../images/lava.png");
                 }
 
                 .upbox {
-                    background: url("images/1up.png");
+                    background: url("../images/1up.png");
                     background-size: 100%;
                     /*background-color:azure;*/
                 }
@@ -83,13 +83,13 @@
                 }
 
                 .box {
-                    background: url("images/virus.png");
+                    background: url("../images/virus.png");
                     background-size: 100%;
                     /*background: teal;*/
                 }
 
                 .wall {
-                    background: url('images/wall.png');
+                    background: url('../images/wall.png');
                     background-size: 100%;
                     /*background: darkslateblue;*/
                 }
@@ -99,23 +99,23 @@
                 }
 
                 .coin {
-                    background: url('images/coin.png');
+                    background: url('../images/coin.png');
                     background-size: 100%;
                     /*background: lightgreen;*/
                 }
 
                 .player {
-                    background-image: url('images/playerRight.png');
+                    background-image: url('../images/playerRight.png');
                     background-size: 100%;
                     /*background: dimgrey;*/
                 }
                 .player #plyrLeft{
-                    background-image: url('images/playerLeft.png');
+                    background-image: url('../images/playerLeft.png');
                     background-size: 100%;
                     /*background: dimgrey;*/
                 }
                 .player #plyrRight{
-                    background-image: url('images/playerRight.png');
+                    background-image: url('../images/playerRight.png');
                     background-size: 100%;
                     /*background: dimgrey;*/
                 }
