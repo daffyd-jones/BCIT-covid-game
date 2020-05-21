@@ -576,49 +576,7 @@
 
 
     <script>
-        let fxBool = true;
-        function fxTogg(){
-            if (fxBool){
-                coinAudio.volume = 0;
-                loseAudio.volume = 0;
-                winAudio.volume = 0;
-                oneUpAudio.volume = 0;
-                fxBool = false;
-            } else if (!fxBool){
-                coinAudio.volume = 0.2;
-                loseAudio.volume = 0.2;
-                winAudio.volume = 0.2;
-                oneUpAudio.volume = 0.2;  
-                fxBool = true; 
-            }
-        }
-
-        let musicBool = true;
-        function musicTogg(){
-            if(musicBool){
-                bgAudio.volume = 0;
-                musicBool = false;
-            } else if (!musicBool){
-                bgAudio.volume = 0.5;
-                musicBool = true;
-            }
-        }
-        
-
-        function toggleFullScreen() {
-            var doc = window.document;
-            var docEl = doc.documentElement;
-
-            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-                requestFullScreen.call(docEl);
-            }
-            else {
-                cancelFullScreen.call(doc);
-            }
-        }   
+         
         
 
         let capstone = "................................................................\n"
@@ -1291,6 +1249,9 @@
             "Other coronaviruses include Middle East Respratory Syndrome (MERS), and Severe Acute Respriratory " +
             "Syndrome (SARS)"
         ];
+
+        //audio import, load and volume adjustments
+        //////////
         let bgAudio = new Audio("sounds/Bg.wav");
         let coinAudio = new Audio("sounds/Coin.wav");
         let loseAudio = new Audio("sounds/Lose.wav");
@@ -1307,7 +1268,9 @@
         winAudio.volume = 0.2;
         oneUpAudio.load();
         oneUpAudio.volume = 0.2;
+        //////////
 
+        //global level var and lives var
         let levelNum = 0
         let lives = 0;
 
@@ -1319,6 +1282,7 @@
         let aButt = false;
 
         //functions for toggling
+        //////////
         function aButtT() {
             aButt = true;
         }
@@ -1358,12 +1322,13 @@
         function downButtF() {
             downButt = false;
         }
+        /////////
 
         function next() {
             wait = false;
         }
 
-        
+        //makes a psudo-random map using preset tiles
         function genMedium() {
             let finalMap = "";
             let playerTile = [
@@ -1413,13 +1378,55 @@
             console.log("\n\n" + finalMap);
         }
 
+        //fx audio mute toggle
+        let fxBool = true;
+        function fxTogg(){
+            if (fxBool){
+                coinAudio.volume = 0;
+                loseAudio.volume = 0;
+                winAudio.volume = 0;
+                oneUpAudio.volume = 0;
+                fxBool = false;
+            } else if (!fxBool){
+                coinAudio.volume = 0.2;
+                loseAudio.volume = 0.2;
+                winAudio.volume = 0.2;
+                oneUpAudio.volume = 0.2;  
+                fxBool = true; 
+            }
+        }
+        //background music mute toggle
+        let musicBool = true;
+        function musicTogg(){
+            if(musicBool){
+                bgAudio.volume = 0;
+                musicBool = false;
+            } else if (!musicBool){
+                bgAudio.volume = 0.5;
+                musicBool = true;
+            }
+        }
+        
+        //toggles full screen
+        //source "https://developers.google.com/web/fundamentals/native-hardware/fullscreen"
+        function toggleFullScreen() {
+            var doc = window.document;
+            var docEl = doc.documentElement;
 
-      
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+            }
+            else {
+                cancelFullScreen.call(doc);
+            }
+        }  
 
 
-
-
-
+        //level class
+        //manages and builds level properties
         class Level {
             constructor(plan) {
                 //takes in level string and creates a matrix of symbols
@@ -1456,7 +1463,13 @@
                 });
             }
         }
-        //used to track and alter the gameplay state
+        //State Class
+        //-used to track and alter the gameplay state
+        //stores level, object array of moving objects
+        //-status can be playing, win or lose
+        //-start returns state cotatining the current level, its objecs
+        //and the status playing
+        //-get player returns player grom objects array
         class State {
             constructor(level, objects, status) {
                 this.level = level;
@@ -1470,7 +1483,13 @@
                 return this.objects.find(a => a.type == "player");
             }
         }
-        //used to represent a vector
+        //Vector Class
+        //-used to represent a vector
+        //-x and y store positions
+        //-plus method adds this Vec object's x and y values and 
+        //another Vec objects values
+        //-times method preforms multiplication on this Vec objects 
+        // x and y values using the incoming factor value
         class Vec {
             constructor(x, y) {
                 this.x = x;
@@ -1483,7 +1502,12 @@
                 return new Vec(this.x * factor, this.y * factor);
             }
         }
-        //player object
+
+        //Player Class
+        //-stores this object's position as a Vec
+        //-stores speed value
+        //-get type returns player
+        //-creata method returns new player object 
         class Player {
             constructor(pos, speed) {
                 this.pos = pos;
@@ -1497,7 +1521,15 @@
             }
         }
         Player.prototype.size = new Vec(0.8, 1.5);
-        //moving box object/virus
+
+        //Box/Virus Class
+        //-stores posiction as Vec
+        //-stores movement speed
+        //-stores reset value
+        //-get type returns box
+        //-create returns new box object 
+        //-if incoming char is a = the new object moves along the x axis
+        //-if incoming char is a | the new object moves along the y axis
         class Box {
             constructor(pos, speed, reset) {
                 this.pos = pos;
@@ -1516,7 +1548,12 @@
             }
         }
         Box.prototype.size = new Vec(1, 1);
-        //oneUp object
+
+        //UpBox Class
+        //-stores position as Vec
+        //-stores speed
+        //-stores reset value
+        //-stores count bool
         class UpBox {
             constructor(pos, speed, reset, count) {
                 this.pos = pos;
@@ -1559,7 +1596,8 @@
         }
         PuzBox.prototype.size = new Vec(1, 1);
 
-        //coin object
+        //Coin/TP Class
+        //-stores position as a Vec
         class Coin {
             constructor(pos, basePos, wobble) {
                 this.pos = pos;
