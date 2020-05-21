@@ -64,8 +64,9 @@
 
 
                 .infected {
-                    /*background: tomato;*/
-                    background: url("../images/lava.png");
+                    /*background-color: teal;*/
+                    background: url("../images/bio.gif");
+                    background-size: 100%;
                 }
 
                 .upbox {
