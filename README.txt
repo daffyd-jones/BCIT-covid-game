@@ -1,6 +1,24 @@
 # BCIT-covid-game
 
-# //toggles full screen
-# //fullscreen toggle function taken from google dev documentation
-# //source "https://developers.google.com/web/fundamentals/native-hardware/fullscreen"
+# NoPandemic's game feature
+
+
+
+## Top-down avoidance game!
+Avoid viruses and infected areas while collectong toilet paper.
+If the player is hit they lose one life and the board is reset.
+Once all items are collected the level advances to the next screen. 
+Health objects increase the players life by one.
+
+Pseudo-random map generation allows for infinite gameplay.
+
+## How to Run
+In order to run the game, download repo and run the "index.html" file in a browser.
+
+
+## sourced code
+//fullscreen toggle function taken from google dev documentation
+//source: "https://developers.google.com/web/fundamentals/native-hardware/fullscreen"
+
+
 
