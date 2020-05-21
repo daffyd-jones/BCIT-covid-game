@@ -1,0 +1,480 @@
+.background {
+    background: url("images/empty.png");
+    /*background: gray;*/
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+.background td {
+    padding: 0;
+}
+
+.arrowButt {
+    text-align: center;
+    width: 5vw;
+    height: 5vh;
+    padding: auto;
+
+}
+
+#textDiv {
+    background: lavender;
+    border: 1px solid black;
+    padding: 1%;
+}
+
+#scoreDiv {
+    background: lavender;
+    padding: 3px;
+    position: auto;
+    align-content: center;
+}
+
+
+
+#buttonDiv {
+    /*background-color: lavender;*/
+    padding: 1%;
+    position: auto;
+}
+
+#gameDiv {
+    background: lavender;
+    padding: 1%;
+    border: solid 1px black;
+    position: auto;
+}
+
+.flex-container {
+    background: dimgray;
+    padding: 1%;
+    position: auto;
+}
+
+
+
+body {
+    background: rgb(131, 116, 139);
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.infected {
+    /*background: tomato;*/
+    background: url("images/lava.png");
+}
+
+.upbox {
+    background: url("images/1up.png");
+    background-size: 100%;
+    /*background-color:azure;*/
+}
+
+.puzbox {
+    background-color:chocolate;
+}
+
+.puzchk {
+    background-color: dimgray;
+}
+
+.box {
+    background: url("images/virus.png");
+    background-size: 100%;
+    /*background: teal;*/
+}
+
+.wall {
+    background: url('images/wall.png');
+    background-size: 100%;
+    /*background: darkslateblue;*/
+}
+
+.actor {
+    position: absolute;
+}
+
+.coin {
+    background: url('images/coin.png');
+    background-size: 100%;
+    /*background: lightgreen;*/
+}
+
+.player {
+    background-image: url('images/playerRight.png');
+    background-size: 100%;
+    /*background: dimgrey;*/
+}
+.player #plyrLeft{
+    background-image: url('images/playerLeft.png');
+    background-size: 100%;
+    /*background: dimgrey;*/
+}
+.player #plyrRight{
+    background-image: url('images/playerRight.png');
+    background-size: 100%;
+    /*background: dimgrey;*/
+}
+
+
+.lost .player {
+    background: firebrick;
+}
+
+.won .player {
+    box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+}
+#homeDiv{
+    width:68vw;
+}
+
+#otherFactDiv{
+    display: none;
+}
+#factText{
+    text-align: center;
+}
+#fullToggTop{
+    position: absolute;
+    right:3vw;
+    top:3vh;
+}
+#musicToggle{
+    position: absolute;
+    right:7vw;
+    top:3vh;
+}
+#fxToggle{
+    position: absolute;
+    right:10vw;
+    top:3vh;
+}
+
+
+@media (min-width: 1025px) {
+    .flex-container2 {
+    text-align: center;
+    background: dimgray;
+    padding: 2%;
+    position: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .grid-container{
+        display: grid;
+        grid-template-rows: 10vh;
+        grid-template-columns: 6;
+    }
+
+    #item1{
+        grid-row: 1 /span 2;
+
+    }
+
+    #item2{
+        grid-row: 3/ span 5;
+    }
+
+    #item3{
+        grid-row:8 / span 3;
+    }
+
+    .game {
+        overflow: hidden;
+        max-width: 70vw;
+        max-height: 600vh;
+        position: relative;
+    }
+    #otherScoreDiv{
+        display:none;
+    }
+    #gameDiv{
+        position: relative;
+        left:13vw;
+    }
+
+    #buttonDiv{
+        display:none;
+    }
+
+    #scoreDiv {
+        padding:5vh;
+    }
+    #startButt{
+        left:40%;
+    }
+}
+@media (max-width: 768px) and (min-height: 1024px) {
+    .game {
+        overflow: hidden;
+        max-width: 95vw;
+        max-height: 60vh;
+        position: relative;
+    }
+    #tbItem{
+        width:30vw;
+        position: absolute;
+        bottom: 5vh;
+        left: 10vw;
+    }
+    #scoreDiv{
+        display:none;
+    }
+    #otherScoreDiv{
+        position: absolute;
+        background-color: lavender;
+        left: 40vw;
+        top: 70vh;
+        height:20vh;
+        width:30hw;
+        margin: 5vw;
+        padding: 1%;
+        text-align: center;
+    }
+    #otherFactText{
+        position: relative;
+        top:20%;
+    }
+
+    #fullToggTop{
+        position: absolute;
+        right:3vw;
+        top:3vh;
+    }
+    #musicToggle{
+        position: absolute;
+        right:13vw;
+        top:3vh;
+    }
+    #fxToggle{
+        position: absolute;
+        right:20vw;
+        top:3vh;
+    }
+}
+@media (min-width: 901px) and (max-width: 1024px) and (orientation: landscape){
+    .game {
+        overflow: hidden;
+        max-width: 96vw;
+        max-height: 60vh;
+        position: relative;
+    }
+    #tbItem{
+        position: absolute;
+        bottom: 3vh;
+        left: 5vw;
+    }
+    #otherScoreDiv{
+        display: none;
+    }
+    #fullToggTop{
+        position: absolute;
+        right:3vw;
+        top:3vh;
+    }
+    #musicToggle{
+        position: absolute;
+        right:10vw;
+        top:3vh;
+    }
+    #fxToggle{
+        position: absolute;
+        right:15vw;
+        top:3vh;
+    }
+}
+
+@media (max-width:900px) and (orientation: landscape) {
+    .game {
+        overflow: hidden;
+        max-width: 60vw;
+        max-height: 90vh;
+        position: relative;
+    }
+    .grid-container{
+        height: 97%;
+        display:grid;
+        grid-template-columns: 19vw 59vw 20vw;
+        grid-template-rows: none;
+    }
+    .flex-container2{
+        position:relative;
+        height: 97%;
+    }
+    #gameDiv{
+        height:100%;
+    }
+    #scoreDiv{
+        display: none;
+    }
+    #otherScoreDiv{
+        background-color: lavender;
+    }
+
+    #factText{
+        font-size: smaller;
+        text-align: center;
+    }
+    grid-item:nth-child(1) {order: 3;}
+    grid-item:nth-child(2) {order: 2;}
+    grid-item:nth-child(3) {order: 1;}
+    #item3{
+        grid-column: 1 / span 1;
+    }
+    #item2{
+        grid-column: 2 / span 1;
+
+    }
+    #item1{
+        grid-column: 3 / span 1;
+
+
+    }
+    #buttonDiv{
+        padding:1px;
+        margin: 0 auto;
+    }
+    #tbItem{
+        position: absolute;
+        bottom: 10vh;
+        left:6px;
+        /*background-color: lavender;*/
+    }
+    #stuffDiv{
+        /*background-color: lavender;*/
+        position: relative;
+        height:97%;
+        margin:1%;
+    }
+    #toggDiv{
+        position:relative;
+        top:40vh;
+        background: lavender;
+        padding: 1vw;
+        height:15vh;
+    }
+
+    #fullToggTop{
+        position: relative;
+        right:1vw;
+        top:1vh;
+    }
+    #musicToggle{
+        position: relative;
+        right:1vw;
+        top:3vh;
+    }
+    #fxToggle{
+        position: relative;
+        right:1vw;
+        top:3vh;
+    }
+    #startButt{
+        position:relative;  
+        left:32%;
+    }
+}
+
+
+
+@media (max-width:668px) and (orientation: portrait) {
+    .game {
+        overflow: hidden;
+        max-width: 90vw;
+        max-height: 65vh;
+        position: relative;
+    }
+    
+    .flex-container2 {
+    background: dimgray;
+    padding: 2%;
+    position: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    }
+    #buttonDiv{
+        display:grid;
+        grid-template-columns: 8;
+        text-align: center;
+        margin:1vh;
+        height:17vh;
+    }
+    #tbItem{
+        grid-column: 3 / span 6;
+    }
+    #startButt{
+        position: relative;
+        left:35%;
+    }
+}
+
+@media (max-width:500px) {
+    .game {
+        overflow: hidden;
+        max-width: 90vw;
+        max-height: 55vh;
+        position: relative;
+    }
+    #buttonDiv{
+        margin:1vw;
+    }
+    
+    #scoreDiv{
+        /*display:none;*/
+        height: 10vh;
+        text-align: center;
+    }
+
+    #factText{
+        /*display:none;*/
+        font-size: smaller;
+        text-align: center;
+    }
+    #levelText{
+        font-size: smaller;
+    }
+    #livesText{
+        font-size: smaller;
+    }
+    #homeDiv{
+        width:90vw;
+    }
+    #otherScoreDiv{
+        display: none;
+    }
+    
+    .flex-container2 {
+    background-color: dimgrey;
+    padding: 2%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    }
+    #fullToggTop{
+        position: absolute;
+        right:3vw;
+        top:3vh;
+    }
+    #musicToggle{
+        position: absolute;
+        right:23vw;
+        top:3vh;
+    }
+    #fxToggle{
+        position: absolute;
+        right:37vw;
+        top:3vh;
+    }
+
+}
