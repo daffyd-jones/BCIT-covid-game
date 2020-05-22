@@ -2,6 +2,8 @@
 
 # NoPandemic's game feature
 
+# Authors: Ben Jones, Ian Snider
+
 
 
 ## Top-down avoidance game!
