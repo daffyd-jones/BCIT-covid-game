@@ -1,23 +1,31 @@
-let capstone = "................................................................\n" +
+let capstoneLarge = "................................................................\n" +
     ".##############################################################.\n" +
     ".#............................................................#.\n";
 
-let foundation = ".#............................................................#.\n" +
+let foundationLarge = ".#............................................................#.\n" +
     ".##############################################################.\n" +
     "................................................................";
 
+let capstoneSmall = "............................................\n" +
+    ".##########################################.\n" +
+    ".#........................................#.\n";
+
+let foundationSmall = ".#........................................#.\n" +
+    ".##########################################.\n" +
+    "............................................";
+
 let playerTile = [
     [
-        ".......o...o........",
-        ".o.#.....o....####..",
-        "..o#o.o.o#...=...#..",
-        ".o#####o.#o.o.o.o#..",
-        "..#.o.o.o#.o.O.@.#.o",
-        ".o#..#####.oo.oo.o..",
-        "......oo.o.o.oo.o...",
-        ".o.oo.o.o.o.oo.o...o",
-        "###o.o.o##########..",
-        ".#=........#........"
+        "....................",
+        "....................",
+        "....................",
+        "....................",
+        "........@...........",
+        "....................",
+        "....................",
+        "....................",
+        "....................",
+        "...................."
     ],
     [
         "o.o..o.....o.o#...o.",
@@ -46,13 +54,13 @@ let playerTile = [
     [
         "...o.o.#............",
         ".o########.....=.###",
-        "..#.o.o.o.o.o.#o.o..",
+        "..#+o.o.o.o.o.#o.o..",
         ".o#o.o.o.....=#.o...",
         ".@o.o.#o.o.o#####+..",
         ".o.o.+#=.....#o.o...",
         "#########o.o.#.o.o..",
         "..o+#+.o....+#o.o...",
-        ".o.o#.o.o#=..o.o.o#..",
+        ".o.o#.o.o#=..o.o.o#.",
         "..o.#..o....o.o.o.#."
     ]
 ]
@@ -92,7 +100,7 @@ let tileMaps = [
         ".o.o.+#=.....#o.o...",
         "#########o.o.#.o.o..",
         "..o+#+.o....+#o.o...",
-        ".o.o#.o.o#=..o.o.o#..",
+        ".o.o#.o.o#=..o.o.o#.",
         "..o.#..o....o.o.o.#."
     ],
     [
@@ -505,7 +513,7 @@ function genSmall() {
         tileOrder.push(tileMaps[gen]);
     }
 
-    finalMap += capstone;
+    finalMap += capstoneSmall;
 
     for (let k = 0; k < 10; k++) {
         finalMap += ".#";
@@ -524,7 +532,7 @@ function genSmall() {
         finalMap += "#.\n";
     }
 
-    finalMap += foundation;
+    finalMap += foundationSmall;
 
     return finalMap;
     console.log("\n\n" + finalMap);
@@ -544,7 +552,7 @@ function genMedium() {
         tileOrder.push(tileMaps[gen]);
     }
 
-    finalMap += capstone;
+    finalMap += capstoneLarge;
 
     for (let k = 0; k < 10; k++) {
         finalMap += ".#";
@@ -563,7 +571,7 @@ function genMedium() {
         finalMap += "#.\n";
     }
 
-    finalMap += foundation;
+    finalMap += foundationLarge;
 
     return finalMap;
     console.log("\n\n" + finalMap);
@@ -583,7 +591,7 @@ function genLarge() {
         tileOrder.push(tileMaps[gen]);
     }
 
-    finalMap += capstone;
+    finalMap += capstoneLarge;
 
     for (let k = 0; k < 10; k++) {
         finalMap += ".#";
@@ -610,7 +618,7 @@ function genLarge() {
         finalMap += "#.\n";
     }
 
-    finalMap += foundation;
+    finalMap += foundationLarge;
 
     return finalMap;
     console.log("\n\n" + finalMap);
