@@ -108,6 +108,7 @@
                 .player {
                     background-image: url('../images/playerRight.png');
                     background-size: 100%;
+                    background-repeat: no-repeat;
                     /*background: dimgrey;*/
                 }
                 .player #plyrLeft{
